@@ -1,7 +1,7 @@
 # cloudbuild.yaml
 steps:
   # 1. Create the Dataflow Template
-  - name: 'python:3.9-slim'
+  - name: 'python:3.11-slim'
     id: 'Bake Template'
     entrypoint: 'bash'
     args:
@@ -14,8 +14,7 @@ steps:
           --staging_location=gs://${_GCS_BUCKET}/staging \
           --template_location=gs://${_GCS_BUCKET}/production/etl_poc1.json \
           --region=us-central1 \
-          --setup_file=./setup.py \
-          --save_main_session=True
+          --setup_file=./setup.py
 
   # 2. Upload the Metadata file so the UI works
   - name: 'gcr.io/cloud-builders/gsutil'
