@@ -1,12 +1,13 @@
 # cloudbuild.yaml
 steps:
   # 1. Create the Dataflow Template
-  - name: 'gcr.io/cloud-builders/gcloud'
-    id: 'Create Template'
+  - name: 'python:3.9-slim'
+    id: 'Bake Template'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
+        pip install apache-beam[gcp]
         python gcp_poc1_templating.py \
           --runner=DataflowRunner \
           --project=$PROJECT_ID \
