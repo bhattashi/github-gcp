@@ -12,7 +12,7 @@ with DAG(
 
     launch_template = DataflowTemplatedJobStartOperator(
         task_id='execute_etl_template',
-        template_gcs_path='gs://gcp_poc1/production/etl_poc1.json',
+        template='gs://gcp_poc1/production/etl_poc1.json',
         location='us-central1',
         parameters={
             'input_file': 'gs://gcp_poc1/input/sample_transactions.csv',
