@@ -29,3 +29,6 @@ steps:
 substitutions:
   _GCS_BUCKET: 'gcp_poc1'
   _COMPOSER_BUCKET: 'us-central1-etl-gcp-poc1-or-609bea12-bucket'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
