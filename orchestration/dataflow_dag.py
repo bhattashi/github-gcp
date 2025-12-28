@@ -16,6 +16,6 @@ with DAG(
         location='us-central1',
         parameters={
             'input_file': 'gs://gcp_poc1/input/sample_transactions.csv',
-            'output_table': 'gcp_poc1:gcp_poc1.transformed_transactions'
+            'output_table': 'gcp-poc1-476406:gcp_poc1.transformed_transactions'
         }
     )
