@@ -12,11 +12,10 @@ with DAG(
 
     launch_template = DataflowTemplatedJobStartOperator(
         task_id='execute_etl_template',
-        template_gcs_path='gs://your-bucket/templates/etl_v1.json',
+        template_gcs_path='gs://gcp_poc1/production/etl_poc1.json',
         location='us-central1',
         parameters={
-            'input_file': 'gs://your-bucket/input/data_{{ ds }}.csv',
-            'output_table': 'your-project:dataset.table',
-            'error_output_file': 'gs://your-bucket/errors/{{ ds }}/err.txt'
+            'input_file': 'gs://gcp_poc1/input/sample_transactions.csv',
+            'output_table': 'gcp_poc1:gcp_poc1.transformed_transactions'
         }
     )

@@ -7,11 +7,11 @@ steps:
     args:
       - '-c'
       - |
-        python dataflow_etl.py \
+        python gcp_poc1_templating.py \
           --runner=DataflowRunner \
           --project=$PROJECT_ID \
           --staging_location=gs://${_GCS_BUCKET}/staging \
-          --template_location=gs://${_GCS_BUCKET}/templates/etl_v1.json \
+          --template_location=gs://${_GCS_BUCKET}/production/etl_poc1.json \
           --region=us-central1 \
           --setup_file=./setup.py \
           --save_main_session=True
@@ -19,7 +19,7 @@ steps:
   # 2. Upload the Metadata file so the UI works
   - name: 'gcr.io/cloud-builders/gsutil'
     id: 'Deploy Metadata'
-    args: ['cp', 'metadata.json', 'gs://${_GCS_BUCKET}/templates/etl_v1.json_metadata']
+    args: ['cp', 'metadata.json', 'gs://${_GCS_BUCKET}/production/etl_poc1.json_metadata']
 
   # 3. Deploy the Airflow DAG to Composer
   - name: 'gcr.io/cloud-builders/gsutil'
@@ -27,5 +27,5 @@ steps:
     args: ['cp', 'orchestration/dataflow_dag.py', 'gs://${_COMPOSER_BUCKET}/dags/']
 
 substitutions:
-  _GCS_BUCKET: 'your-dataflow-bucket'
-  _COMPOSER_BUCKET: 'your-composer-dags-bucket'
+  _GCS_BUCKET: 'gcp_poc1'
+  _COMPOSER_BUCKET: 'us-central1-etl-gcp-poc1-or-609bea12-bucket'
